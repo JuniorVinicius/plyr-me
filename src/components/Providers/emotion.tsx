@@ -23,6 +23,11 @@ export default function EmotionProvider({
               padding: 0,
             },
           }),
+          breakpoints:{
+            xl: '60em',
+            lg: '53em',
+            sm: '27em'
+          },
           colors: {
             button: ["#ff6600", "#ffffff"],
             text: ["#5c5b5b", "#000000", "#666666"],

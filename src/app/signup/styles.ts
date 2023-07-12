@@ -1,4 +1,4 @@
-import { createStyles } from "@mantine/core";
+import { createStyles, em, getBreakpointValue } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
   container: {
@@ -14,13 +14,36 @@ export const useStyles = createStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    [`@media (max-width: ${em(getBreakpointValue(theme.breakpoints.xl) - 1)})`]:
+      {
+        width: "60%",
+      },
+    [`@media (max-width: ${em(getBreakpointValue(theme.breakpoints.lg) - 1)})`]:
+      {
+        width: "100%",
+      },
   },
   box: {
     width: "85%",
-    height: "75%",
+    height: "60%",
+    [`@media (max-width: ${em(getBreakpointValue(theme.breakpoints.lg) - 1)})`]:
+    {
+      height: "80%",
+    },
+    [`@media (max-width: ${em(getBreakpointValue(theme.breakpoints.sm) - 1)})`]:
+      {
+        height: "90%",
+      },
   },
   wrapper: {
     width: "100%",
+    [`@media (max-width: ${em(getBreakpointValue(theme.breakpoints.sm) - 1)})`]:
+    {
+      display: "flex",
+      justifyContent: "center",
+      alignItems:"center",
+      flexDirection: "column"
+    },
   },
   imageContainer: {
     width: 138,
@@ -31,57 +54,6 @@ export const useStyles = createStyles((theme) => ({
     fontSize: 24,
     marginTop: 8,
     color: theme.colors.text[2],
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
-  form: {
-    width: "100%",
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
-    gridTemplateAreas: `
-    "name name name name name"
-    "email email email phone phone"
-    "password password confirm confirm confirm"
-    "club club club club club"
-    "check check check check check"
-    "button button button button button"
-    "login login login login login"
-    `,
-    gap: 15,
-  },
-  inputName: {
-    gridArea: "name",
-  },
-  inputEmail: { gridArea: "email" },
-  inputPhone: { gridArea: "phone" },
-  inputPassword: { gridArea: "password" },
-  inputPasswordConfirm: { gridArea: "confirm" },
-  inputClub: {
-    gridArea: "club",
-    display: "flex",
-    width: "100%",
-    alignItems: "flex-end",
-    gap: 8,
-  },
-  clubInput: {
-    width: "100%",
-  },
-  checkInput: {
-    gridArea: "check",
-  },
-  anchor: {
-    color: theme.colors.button[0],
-    ":hover":{
-      color: 'blue'
-    }
-  },
-  button: {
-    gridArea: "button"
-  },
-  login:{
-    gridArea: "login"
-  },
-  infoText:{
-    color: theme.colors.text[0],
-    fontWeight: 400
-  }
 }));
