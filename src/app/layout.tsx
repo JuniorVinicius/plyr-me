@@ -1,21 +1,27 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
+import EmotionProvider from "@/components/Providers/emotion";
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ['400', '500', '700'],
+  style: 'normal'
+});
 
 export const metadata: Metadata = {
-  title: 'Plyr.me'
-}
+  title: "Plyr.me",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: JSX.Element;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="pt-br">
+      <body className={roboto.className}>
+        <EmotionProvider>{children}</EmotionProvider>
+      </body>
     </html>
-  )
+  );
 }
