@@ -45,11 +45,7 @@ export const useStyles = createStyles((theme) => ({
       flexDirection: "column"
     },
   },
-  imageContainer: {
-    width: 138,
-    height: 34,
-    position: "relative",
-  },
+
   subTitle: {
     fontSize: 24,
     marginTop: 8,

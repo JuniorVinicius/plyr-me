@@ -1,3 +1,3 @@
 import FormSignup from "./FormSgnup";
-
-export { FormSignup };
+import Logo from "./Logo";
+export { FormSignup, Logo };
