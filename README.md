@@ -1,34 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+    <img position='center' src='public/img/logo.png' alt='Plyr.me logo'/>
+</p>
+<h1 align='center'> Página de Cadastro de usuário</h1>
 
-## Getting Started
+<p align='center'>
+    <img src='https://img.shields.io/badge/-Next.js-blue'/>
+    <img src='https://img.shields.io/badge/-Mantine%20UI-red'/>
+    <img src='https://img.shields.io/badge/-React%20Hook%20Form-green'/>
+    <img src='https://img.shields.io/badge/-Yup-yellow'/>
+    <img src='https://img.shields.io/badge/-Typescript-blue'/>
+    <img src='https://img.shields.io/badge/-React%20Imask-yellowgreen'/>
+</p>
 
-First, run the development server:
+## 📌Descrição do projeto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+O presente projeto trata-se de uma simples tela de cadastro de usuário sem integração com APIs.
+Esse projeto visa apenas a construção da interface, e a preparação do formulário para o envio e comunicação com uma API externa.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+✔️ Next.;  
+✔️ Typescript;  
+✔️ Yup (validação dos formulários);  
+✔️ React Hook Form (criação do formulário);  
+✔️ React IMask (criação de máscaras para inputs);  
+✔️ Mantine UI (Design de toda a tela);
+## 📌Screenshots
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Tela padrão (desktop)
 
-## Learn More
+<img position='center' src='public/img/screenshot01.png' alt=''/>
 
-To learn more about Next.js, take a look at the following resources:
+### Tela com mensagens de erro (desktop)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<img position='center' src='public/img/screenshot02.png' alt=''/>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Tela versão mobile (desktop)
 
-## Deploy on Vercel
+<img position='center' src='public/img/screenshot03.png' alt=''/>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
