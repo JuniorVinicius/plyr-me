@@ -22,7 +22,7 @@ export default function Signup() {
         </div>
       </section>
 
-      <ImageSignupContainer src="/img/background.svg" alt={imageAlt} />
+      <ImageSignupContainer src="/img/lazyBg.webp" alt={imageAlt} />
     </main>
   );
 }
