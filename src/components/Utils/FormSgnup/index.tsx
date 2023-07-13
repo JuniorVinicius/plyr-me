@@ -75,20 +75,34 @@ export default function FormSignup() {
             label={label}
             style={{ gridArea: name }}
             styles={(theme) => labelStyles(theme, error)}
+            error={error?.message}
           >
-            <InputBase
-              placeholder={placeholder}
-              type={
-                name === "password" || name === "confirm" ? "password" : "text"
-              }
-              autoComplete="off"
-              onChange={({ target: { value } }: any) => {
-                onChange(value);
-              }}
-              error={error?.message}
-              component={IMaskInput}
-              mask="(00)00000-0000"
-            />
+            {name === "phone" ? (
+              <InputBase
+                placeholder={placeholder}
+                autoComplete="off"
+                onChange={({ target: { value } }: any) => {
+                  onChange(value);
+                }}
+                error={!!error?.message}
+                component={IMaskInput}
+                mask="(00)00000-0000"
+              />
+            ) : (
+              <Input
+                placeholder={placeholder}
+                autoComplete="off"
+                type={
+                  name === "password" || name === "confirm"
+                    ? "password"
+                    : "text"
+                }
+                onChange={({ target: { value } }) => {
+                  onChange(value);
+                }}
+                error={!!error?.message}
+              />
+            )}
           </Input.Wrapper>
         )}
       />
@@ -109,7 +123,7 @@ export default function FormSignup() {
           rules={{
             required: true,
           }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <Input.Wrapper
               label="Nome do seu clube"
               className={classes.clubInput}
