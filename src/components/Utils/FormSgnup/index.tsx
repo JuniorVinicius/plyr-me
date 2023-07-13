@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Button,
   Checkbox,
@@ -10,21 +11,22 @@ import { INPUTS_LIST, schema } from "@/constants";
 import { useStyles } from "./styles";
 import AnchorLink from "../AnchorLink";
 import Link from "../Link";
-import { Controller, FieldError, FieldValues, useForm } from "react-hook-form";
+import { Controller, FieldError, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IMaskInput } from "react-imask";
 
 type FormValues = {
-  name: string
-  phone: string
-  email: string
-  password: string
-  confirm: string
-  check: string
-  club: string
-}
+  name: string;
+  phone: string;
+  email: string;
+  password: string;
+  confirm: string;
+  check: string;
+  club: string;
+};
 
 export default function FormSignup() {
+  const [isChecked, setIsChecked] = useState(false);
   const {
     control,
     handleSubmit,
@@ -32,6 +34,7 @@ export default function FormSignup() {
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
+
   const onSubmit = async (data: FormValues) => {
     try {
       console.log(data);
@@ -141,8 +144,10 @@ export default function FormSignup() {
           render={({ field: { onChange }, fieldState: { error } }) => (
             <Checkbox
               className={classes.infoText}
+              checked={isChecked}
               onChange={({ target: { value } }) => {
-                onChange(value);
+                setIsChecked((prev) => !prev);
+                onChange(!isChecked ? value : "");
               }}
               error={error?.message}
               label={
