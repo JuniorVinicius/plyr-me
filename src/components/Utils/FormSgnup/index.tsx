@@ -1,15 +1,50 @@
 import React from "react";
-import { Button, Checkbox, Input, MantineTheme } from "@mantine/core";
-import { INPUTS_LIST } from "@/constants";
+import {
+  Button,
+  Checkbox,
+  Input,
+  InputBase,
+  MantineTheme,
+} from "@mantine/core";
+import { INPUTS_LIST, schema } from "@/constants";
 import { useStyles } from "./styles";
 import AnchorLink from "../AnchorLink";
 import Link from "../Link";
+import { Controller, FieldError, FieldValues, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { IMaskInput } from "react-imask";
+
+type FormValues = {
+  name: string
+  phone: string
+  email: string
+  password: string
+  confirm: string
+  check: string
+  club: string
+}
 
 export default function FormSignup() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = async (data: FormValues) => {
+    try {
+      console.log(data);
+      // API CALL
+    } catch (error) {
+      //ERROR
+    }
+  };
+
   const { classes } = useStyles();
-  const labelStyles = (theme: MantineTheme) => ({
+  const labelStyles = (theme: MantineTheme, error?: FieldError) => ({
     label: {
-      color: theme.colors.text[1],
+      color: error ? "red" : theme.colors.text[1],
       fontWeight: 400,
     },
   });
@@ -18,52 +53,114 @@ export default function FormSignup() {
     root: {
       background: theme.colors.button[0],
       color: theme.colors.button[1],
+      fontWeight: 700,
     },
   });
 
   const INPUTS = INPUTS_LIST.map(({ name, label, placeholder }) => {
     return (
-      <Input.Wrapper
+      <Controller
         key={name}
-        label={label}
-        style={{ gridArea: name }}
-        styles={labelStyles}
-      >
-        <Input placeholder={placeholder} />
-      </Input.Wrapper>
+        name={name}
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({ field: { onChange }, fieldState: { error } }) => (
+          <Input.Wrapper
+            key={name}
+            label={label}
+            style={{ gridArea: name }}
+            styles={(theme) => labelStyles(theme, error)}
+          >
+            <InputBase
+              placeholder={placeholder}
+              type={
+                name === "password" || name === "confirm" ? "password" : "text"
+              }
+              autoComplete="off"
+              onChange={({ target: { value } }: any) => {
+                onChange(value);
+              }}
+              error={error?.message}
+              component={IMaskInput}
+              mask="(00)00000-0000"
+            />
+          </Input.Wrapper>
+        )}
+      />
     );
   });
 
   return (
-    <form className={classes.form}>
+    <form
+      className={classes.form}
+      onSubmit={handleSubmit(onSubmit)}
+      autoComplete="off"
+    >
       {INPUTS}
       <div className={classes.inputClub}>
-        <Input.Wrapper
-          label="Nome do seu clube"
-          className={classes.clubInput}
-          styles={labelStyles}
+        <Controller
+          name="club"
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <Input.Wrapper
+              label="Nome do seu clube"
+              className={classes.clubInput}
+              styles={(theme) => labelStyles(theme, error)}
+              error={error?.message}
+            >
+              <Input
+                placeholder="Digite o nome do seu clube"
+                onChange={({ target: { value } }) => {
+                  onChange(value);
+                }}
+                error={error?.message}
+              />
+            </Input.Wrapper>
+          )}
+        />
+        <span
+          className={`${classes.infoText} ${
+            !!errors?.club ? classes.errorLabel : ""
+          }`}
         >
-          <Input placeholder="Digite o nome do seu clube" />
-        </Input.Wrapper>
-        <span className={classes.infoText}>.plyr.me</span>
+          .plyr.me
+        </span>
       </div>
       <div className={classes.checkInput}>
-        <Checkbox
-          className={classes.infoText}
-          label={
-            <Link
-              leftText="Aceito os"
-              link="Termos e Condições"
-              rightText="da Plyr.me e confirmo que não publicarei conteúdo adulto no meu
+        <Controller
+          name="check"
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange }, fieldState: { error } }) => (
+            <Checkbox
+              className={classes.infoText}
+              onChange={({ target: { value } }) => {
+                onChange(value);
+              }}
+              error={error?.message}
+              label={
+                <Link
+                  leftText="Aceito os"
+                  link="Termos e Condições"
+                  rightText="da Plyr.me e confirmo que não publicarei conteúdo adulto no meu
             clube."
-              href="#"
+                  href="#"
+                />
+              }
             />
-          }
+          )}
         />
       </div>
       <div className={classes.button}>
         <Button styles={buttonStyles} type="submit">
-          Criar Conta
+          CRIAR CONTA
         </Button>
       </div>
       <div className={classes.login}>

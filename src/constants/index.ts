@@ -1,3 +1,3 @@
 import { INPUTS_LIST } from "./inputsList";
-
-export { INPUTS_LIST };
+import { schema } from "./schemas/signup.schema";
+export { INPUTS_LIST, schema };

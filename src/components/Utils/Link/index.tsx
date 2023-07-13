@@ -17,7 +17,7 @@ export default function Link({ leftText, link, rightText, href }: LinkProps) {
       <Anchor href={href} target="_blank" className={classes.anchor}>
         {link}
       </Anchor>
-      {" " + rightText ? rightText : null}
+      {rightText ? " " +  rightText : null}
     </>
   );
 }

@@ -11,8 +11,10 @@ export default function Logo() {
     <div className={classes.imageContainer}>
       <Image
         src="/img/logo.png"
-        layout="fill"
-        objectFit="cover"
+        fill={true}
+        sizes="100%"
+        style={{objectFit: "cover"}}
+        loading="lazy"
         alt={logoAlt}
       />
     </div>

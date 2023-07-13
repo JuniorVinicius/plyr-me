@@ -68,4 +68,7 @@ export const useStyles = createStyles((theme) => ({
     color: theme.colors.text[0],
     fontWeight: 400,
   },
+  errorLabel:{
+    marginBottom: 15
+  }
 }));

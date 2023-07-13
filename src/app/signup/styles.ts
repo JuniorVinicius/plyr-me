@@ -25,7 +25,7 @@ export const useStyles = createStyles((theme) => ({
   },
   box: {
     width: "85%",
-    height: "60%",
+    height: "70%",
     [`@media (max-width: ${em(getBreakpointValue(theme.breakpoints.lg) - 1)})`]:
     {
       height: "80%",

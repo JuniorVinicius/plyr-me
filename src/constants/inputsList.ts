@@ -1,4 +1,12 @@
-export const INPUTS_LIST = [
+type InputTypes = "name" | "phone" | "email" | "password" | "confirm" | "check" | "club"
+
+type InputsProps = {
+  label: string;
+  name: InputTypes;
+  placeholder: string;
+}
+
+export const INPUTS_LIST: InputsProps[] = [
   {
     label: "Nome",
     name: "name",
